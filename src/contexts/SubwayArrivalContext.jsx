@@ -1,13 +1,11 @@
 import React, { createContext, useState, useContext } from 'react';
-
+import AUTH_KEY from '../apikey';
 const SubwayArrivalContext = createContext();
 
 export const SubwayArrivalProvider = ({ children }) => {
     const [subwayArrivalData, setSubwayArrivalData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    const AUTH_KEY = "785a517a72776b713839514b524b68";
 
     const fetchSubwayArrivalData = async (stationName) => {
         setLoading(true);
