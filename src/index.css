@@ -1,0 +1,11 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root {
+    @apply font-sans;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}

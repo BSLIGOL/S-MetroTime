@@ -1,0 +1,10 @@
+function Card({iconSrc, title}) {
+    return (
+        <div className="flex flex-col items-center mr-6 ml-6 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 cursor-pointer w-full sm:w-52 h-60 justify-center">
+            <img src={iconSrc} alt={title} />
+            <h1>{title}</h1>
+        </div>
+    )
+}
+
+export default Card
