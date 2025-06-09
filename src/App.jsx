@@ -9,21 +9,24 @@ import StationMap from './pages/StationMap';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import {SubwayArrivalProvider} from './contexts/SubwayArrivalContext';
+import {StationListProvider} from './contexts/StationListContext';
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <SubwayArrivalProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/bookmark" element={<Bookmark />} />
-          <Route path="/stationmap" element={<StationMap />} />
-          <Route path="/result" element={<Result />} />
-          <Route path="/test" element={<TestPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </SubwayArrivalProvider>
+      <StationListProvider>
+        <SubwayArrivalProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/bookmark" element={<Bookmark />} />
+            <Route path="/stationmap" element={<StationMap />} />
+            <Route path="/result" element={<Result />} />
+            <Route path="/test" element={<TestPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </SubwayArrivalProvider>
+      </StationListProvider>
       <Footer />
     </div>
   );

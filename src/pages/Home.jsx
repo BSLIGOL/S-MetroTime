@@ -21,8 +21,8 @@ function Home() {
 
   return (
     <div className={`flex flex-col items-center flex-grow py-8`}>
-      <Search className="mt-28 mb-8" />
-      <div className="flex flex-row gap-24 justify-center mt-20 mb-auto">
+      <Search />
+      <div className="flex flex-row gap-24 justify-center mt-auto mb-auto">
         {cardData.map((item) => (
           <Card key={item.id} {...item} />
         ))}
