@@ -20,7 +20,7 @@ function Home() {
     ]);
 
   return (
-    <div className={`flex flex-col items-center flex-grow py-8`}>
+    <div className="flex flex-col items-center flex-grow py-8">
       <Search />
       <div className="flex flex-row gap-24 justify-center mt-auto mb-auto">
         {cardData.map((item) => (
