@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SearchIcon from '../../assets/SearchIcon.png';
-// import { useSubwayArrivalContext } from '../../contexts/SubwayArrivalContext';
 import { useStationListContext } from '../../contexts/StationListContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,12 +8,13 @@ function Search() {
     const [stationName, setStationName] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(-1);
 
-    // const { fetchSubwayArrivalData, loading } = useSubwayArrivalContext();
     const { stationList } = useStationListContext();
 
     const handleSearch = async (selectedStationName, selectedLineNumber) => {
         const searchQuery = selectedStationName || stationName;
-        // await fetchSubwayArrivalData(searchQuery);
+        setStationName('');
+        setSelectedIndex(-1);
+        
         navigate(`/result/${searchQuery}/${selectedLineNumber}`);
     };
 
@@ -56,12 +56,10 @@ function Search() {
                     setSelectedIndex(-1); // 🔥 검색어 변경 시 인덱스 초기화
                 }}
                 onKeyDown={handleKeyPress}
-                // disabled={loading}
             />
             <button
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 z-10"
                 onClick={() => handleSearch(stationName, lineNumber)}
-                // disabled={loading}
             >
                 <img src={SearchIcon} alt="Search" className="w-5 h-5" />
             </button>

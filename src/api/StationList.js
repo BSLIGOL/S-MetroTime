@@ -2,7 +2,7 @@ import * as XLSX from 'xlsx';
 
 export const fetchStationList = async () => {
     try {
-        const response = await fetch('Station.xlsx');
+        const response = await fetch('/Station.xlsx');
         if(!response.ok) {
             throw new Error('파일을 불러올 수 없습니다.');
         }

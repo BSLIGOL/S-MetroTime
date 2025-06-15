@@ -5,8 +5,8 @@ import Result from './pages/Result';
 import Bookmark from './pages/Bookmark';
 import NotFound from './pages/NotFound';
 import StationMap from './pages/StationMap';
-import Header from './components/common/Header';
-import Footer from './components/common/Footer';
+import Header from './components/templates/Header';
+import Footer from './components/templates/Footer';
 import {StationListProvider} from './contexts/StationListContext';
 
 function App() {

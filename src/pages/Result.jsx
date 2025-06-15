@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchSubwayArrival } from '../api/StationArrival';
-import { lineToSubwayNm, subwayIdToLineNumber } from '../utils/lineToSubwayNm';
+import { lineToSubwayNm } from '../utils/lineToSubwayNm';
 import { getLineColor } from '../utils/lineColor';
 import Search from '../components/ui/Search';
 import BackBotton from '../assets/BackBotton.png';
@@ -13,6 +13,30 @@ function Result() {
     const [subwayArrival, setSubwayArrival] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [isBookmarked, setIsBookmarked] = useState(false);
+
+    // 즐겨찾기 추가/삭제 함수 (alert 제거됨)
+    const handleBookmark = (stationName, lineNumber) => {
+        const key = 'bookmarks';
+        const bookmarks = JSON.parse(localStorage.getItem(key)) || [];
+
+        const exists = bookmarks.some(
+            item => item.stationName === stationName && item.lineNumber === lineNumber
+        );
+
+        if (exists) {
+            const updated = bookmarks.filter(
+                item => !(item.stationName === stationName && item.lineNumber === lineNumber)
+            );
+            localStorage.setItem(key, JSON.stringify(updated));
+            setIsBookmarked(false);
+        } else {
+            const updated = [...bookmarks, { stationName, lineNumber }];
+            localStorage.setItem(key, JSON.stringify(updated));
+            setIsBookmarked(true);
+        }
+    };
+
 
     useEffect(() => {
         const fectchData = async () => {
@@ -36,6 +60,14 @@ function Result() {
         }
     }, [stationName, lineNumber]);
 
+    useEffect(() => {
+        const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        const exists = bookmarks.some(
+            item => item.stationName === stationName && item.lineNumber === lineNumber
+        );
+        setIsBookmarked(exists);
+    }, [stationName, lineNumber]);
+
     return (
         <div className="flex flex-col items-center flex-grow">
             <Search />
@@ -48,11 +80,27 @@ function Result() {
                         className="w-8 h-8 cursor-pointer transition-transform duration-150 ease-in-out hover:scale-110 active:scale-95"
                     />
                 </div>
-                <div className="flex flex-col items-center justify-center border-2 border-gray-200 rounded-lg w-1/2">
-                    <div className="p-4 m-4 w-40 text-center font-bold border rounded-full" style={{ borderColor: getLineColor(lineNumber) }}>
-                        <h1>
-                            {stationName}역 <span className="rounded-full p-1 text-white" style={{ backgroundColor: getLineColor(lineNumber) }}>{lineNumber}</span>
-                        </h1>
+                <div className="flex flex-col items-center justify-center border-2 shadow-lg rounded-lg mt-4 w-1/2" style={{ borderColor: getLineColor(lineNumber) }}>
+                    <button
+                        onClick={() => handleBookmark(stationName, lineNumber)}
+                        className={`absolute top-2 right-2 text-white text-sm font-semibold px-2 py-1 rounded transition duration-150 ${
+                            isBookmarked ? 'bg-gray-400 hover:bg-gray-500' : 'bg-yellow-400 hover:bg-yellow-500'
+                        }`}
+                    >
+                        {isBookmarked ? '✓ 즐겨찾기됨' : '★ 즐겨찾기'}
+                    </button>
+                    
+                    <div
+                        className="p-2 m-4 text-center font-bold border-2 rounded-full flex flex-wrap justify-center items-center gap-2"
+                        style={{ borderColor: getLineColor(lineNumber), minWidth: '10rem', maxWidth: '100%' }}
+                    >
+                        <span>{stationName}역</span>
+                        <span
+                            className="rounded-full px-2 py-1 text-white"
+                            style={{ backgroundColor: getLineColor(lineNumber) }}
+                        >
+                            {lineNumber}
+                        </span>
                     </div>
                     
                     <Timer loading={loading} error={error} subwayArrival={subwayArrival} />
