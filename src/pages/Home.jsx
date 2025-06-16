@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Search from '../components/ui/Search';
 import Card from '../components/ui/Card';
 import BookMark from '../assets/BookMark.png';
@@ -6,18 +6,20 @@ import MetroLogo from '../assets/MetroLogo.png';
 
 
 function Home() {
-    const [cardData] = useState([
+    const cardData = [
       {
         id:1,
         iconSrc: BookMark,
         title: '즐겨찾기',
+        path: '/bookmark'
       },
       {
         id:2,
         iconSrc: MetroLogo,
-        title:'지하철 노선도'
+        title:'지하철 노선도',
+        path: '/stationmap'
       }
-    ]);
+    ];
 
   return (
     <div className="flex flex-col items-center flex-grow py-8">

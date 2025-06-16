@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound';
 import StationMap from './pages/StationMap';
 import Header from './components/templates/Header';
 import Footer from './components/templates/Footer';
-import {StationListProvider} from './contexts/StationListContext';
+import {StationListProvider} from './contexts/StationListProvider';
 
 function App() {
   return (

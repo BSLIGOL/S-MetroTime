@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SearchIcon from '../../assets/SearchIcon.png';
-import { useStationListContext } from '../../contexts/StationListContext';
+import { useStationListContext } from '../../contexts/useStationListContext';
 import { useNavigate } from 'react-router-dom';
 
 function Search() {

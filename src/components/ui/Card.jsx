@@ -1,15 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Card({iconSrc, title}) {
+function Card({iconSrc, title, path}) {
     const navigate = useNavigate();
 
     const handleClick = () => {
-        if(title === '즐겨찾기') {
-            navigate('/bookmark');
-        } else if(title === '지하철 노선도') {
-            navigate('/stationmap');
-        }
+        navigate(path);
     }
 
     return (

@@ -1,7 +1,6 @@
-import { createContext, useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { StationListContext } from './StationListContext';
 import { fetchStationList } from '../api/StationList';
-
-const StationListContext = createContext();
 
 export const StationListProvider = ({children}) => {
     const [stationList, setStationList] = useState([]);
@@ -19,12 +18,4 @@ export const StationListProvider = ({children}) => {
             {children}
         </StationListContext.Provider>
     );
-};
-
-export const useStationListContext = () => {
-    const context = useContext(StationListContext);
-    if(context === undefined) {
-        throw new Error('useStationListContext는 StationListProvider 내에서 사용되어야 합니다.');
-    }
-    return context;
 };
