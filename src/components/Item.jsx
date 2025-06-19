@@ -2,7 +2,7 @@ import React from 'react';
 import './Item.css';
 import { getLineColor } from '../utils/lineColor'; // 실제 위치에 맞게 조정
 
-const Item = ({ stationName, lineNumber }) => {
+const Item = ({ stationName, lineNumber, handleDelete }) => {
   const bgColor = getLineColor(lineNumber); // "2호선", "경의중앙선" 등 그대로 사용
 
   return (
@@ -15,7 +15,7 @@ const Item = ({ stationName, lineNumber }) => {
         >
           {lineNumber}
         </div>
-        <button>삭제</button>
+        <button onClick={() => handleDelete(stationName, lineNumber)}>삭제</button>
       </div>
     </div>
   );
