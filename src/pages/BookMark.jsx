@@ -6,7 +6,7 @@ import Back from '../components/Back';
 function BookMark() {
     return (
         <div>
-            <Search/>
+            <span className="flex flex-col items-center flex-grow"><Search/></span>
             <Body isBookmarkPage={true}/>
             <Back/>
         </div>
