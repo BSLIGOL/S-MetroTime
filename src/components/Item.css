@@ -1,0 +1,36 @@
+.range {
+  margin-top: 25px;
+}
+
+.Item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(172, 172, 172);
+  padding-top: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.Item .name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.Item .number {
+  border: 1px solid;
+  padding: 0 5px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.Item button {
+  border-radius: 5px;
+  border: 1px solid rgb(172, 172, 172);
+  padding: 0 5px;
+  cursor: pointer;
+  margin-left: 260px;
+}

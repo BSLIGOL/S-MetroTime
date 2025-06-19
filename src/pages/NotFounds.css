@@ -1,0 +1,31 @@
+.NotFounds {
+  border: 1px solid;
+  width: 700px;
+  height: 250px;
+  margin: 150px 0 0 420px;
+  background-color: rgb(90, 90, 214);
+  border-style: none;
+}
+
+.Not2 {
+  border: 1px solid;
+  margin: 5px 10px 0 10px;
+  height: 210px;
+  background-color: rgb(240, 230, 217);
+  border-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.NotFounds button {
+  transform: translate(300px,-50px);
+  padding: 10px 20px 10px 20px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  border-style: none;
+  
+}
