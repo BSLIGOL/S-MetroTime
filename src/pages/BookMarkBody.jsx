@@ -1,7 +1,7 @@
 // Body.jsx
 import React, { useState, useEffect } from 'react'; // useState, useEffect 추가
 import Item from '../components/Item';
-import './Body.css';
+import './BookMarkBody.css';
 
 const Body = ({ isBookmarkPage }) => {
   // data를 상태로 관리

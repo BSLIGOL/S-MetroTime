@@ -1,6 +1,6 @@
 import React from "react";
 import Search from '../components/ui/Search';
-import Body from  '../pages/Body';
+import Body from  './BookMarkBody';
 import Back from '../components/Back';
 
 function BookMark() {
