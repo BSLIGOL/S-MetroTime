@@ -1,0 +1,23 @@
+/* Body.css */
+.Body {
+  border: 1px solid;
+  width: 500px;
+  height: 390px; /* 고정된 높이 유지 */
+  border-color: rgb(172, 172, 172);
+  transform: translate(510px, 10px);
+  border-radius: 5px;
+  /* --- 추가 --- */
+  overflow-y: scroll; /* 세로 스크롤 추가 */
+  /* 필요에 따라 스크롤바 숨기기 (선택 사항) */
+  /* scrollbar-width: none; /* Firefox */
+  /* -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Webkit (Chrome, Safari) 스크롤바 숨기기 */
+/* .Body::-webkit-scrollbar {
+  display: none;
+} */
+
+.no-result {
+  transform: translate(180px, 200px);
+}

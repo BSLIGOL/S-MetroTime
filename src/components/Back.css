@@ -5,13 +5,13 @@
 
 .Back img{
   height: 30px;
-  transform: translate(463px,-240px);
+  transform: translate(463px,-360px);
 }
 
 .back-button:hover {
-  transform: translate(463px, -240px) scale(1.1);
+  transform: translate(463px, -360px) scale(1.1);
 }
 
 .back-button:active {
-  transform: translate(463px, -240px) scale(0.95);
+  transform: translate(463px, -360px) scale(0.95);
 }
