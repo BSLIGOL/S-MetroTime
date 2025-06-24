@@ -1,6 +1,6 @@
 // Body.jsx
 import React, { useState, useEffect } from 'react'; // useState, useEffect 추가
-import Item from '../components/Item';
+import Item from '../components/ui/Item';
 import './BookMarkBody.css';
 
 const Body = ({ isBookmarkPage }) => {

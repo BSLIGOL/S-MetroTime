@@ -6,10 +6,14 @@ import { getLineColor } from '../utils/lineColor';
 import Search from '../components/ui/Search';
 import BackBotton from '../assets/BackBotton.png';
 import Timer from '../components/ui/Timer';
+import usePageTitle from '../hooks/usePageTitle';
 
 function Result() {
     const navigate = useNavigate();
     const { stationName, lineNumber } = useParams();
+
+    usePageTitle(`-${stationName}역 ${lineNumber}- 열차 도착 정보`);
+
     const [subwayArrival, setSubwayArrival] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);

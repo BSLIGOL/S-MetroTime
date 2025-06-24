@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import './NotFounds.css'
+import usePageTitle from '../hooks/usePageTitle';
 const NotFounds = ()=> {
     const navigate = useNavigate();
+    usePageTitle('404 Not Found');
 
     const handleClick = ()=> {
     navigate('/');

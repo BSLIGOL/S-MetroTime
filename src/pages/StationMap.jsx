@@ -2,8 +2,12 @@ import Search from "../components/ui/Search";
 import StationLineMap from "../assets/StationMap.png";
 import BackBotton from "../assets/BackBotton.png";
 import { useNavigate } from "react-router-dom";
+import usePageTitle from '../hooks/usePageTitle';
 
 function StationMap() {
+
+    usePageTitle('지하철 노선도');
+
     const navigate = useNavigate();
 
     const handleBack = () => {

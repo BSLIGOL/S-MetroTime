@@ -4,7 +4,7 @@
   width: 500px;
   height: 390px; /* 고정된 높이 유지 */
   border-color: rgb(172, 172, 172);
-  transform: translate(510px, 10px);
+  transform: translate(710px, 10px);
   border-radius: 5px;
   /* --- 추가 --- */
   overflow-y: scroll; /* 세로 스크롤 추가 */
