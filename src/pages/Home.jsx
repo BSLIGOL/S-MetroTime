@@ -3,9 +3,10 @@ import Search from '../components/ui/Search';
 import Card from '../components/ui/Card';
 import BookMark from '../assets/BookMark.png';
 import MetroLogo from '../assets/MetroLogo.png';
-
+import usePageTitle from '../hooks/usePageTitle';
 
 function Home() {
+    usePageTitle('S-MetroTime');
     const cardData = [
       {
         id:1,

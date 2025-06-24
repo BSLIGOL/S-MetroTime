@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 임포트
 import './Item.css';
-import { getLineColor } from '../utils/lineColor'; // 실제 위치에 맞게 조정
+import { getLineColor } from '../../utils/lineColor'; // 실제 위치에 맞게 조정
 
 const Item = ({ stationName, lineNumber, handleDelete }) => {
   const navigate = useNavigate(); // useNavigate 훅 사용
