@@ -18,23 +18,33 @@ function Result() {
     const [subwayArrival, setSubwayArrival] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    // const [isBookmarked, setIsBookmarked] = useState(false); // ⚠️ useBookmarks 훅으로 대체됨
+    const [isBookmarked, setIsBookmarked] = useState(false);
 
-    // useBookmarks 훅 사용: 북마크 관련 상태와 함수를 가져옵니다.
-    const { addBookmark, removeBookmark, isBookmarked: currentIsBookmarked } = useBookmarks();
+    // 즐겨찾기 추가/삭제 함수 (alert 제거됨)
+    const handleBookmark = (stationName, lineNumber) => {
+        const key = 'bookmarks';
+        const bookmarks = JSON.parse(localStorage.getItem(key)) || [];
 
-    // 즐겨찾기 버튼 클릭 핸들러: useBookmarks 훅의 함수를 사용합니다.
-    const handleBookmarkClick = () => { // 함수 이름 변경 (handleBookmark -> handleBookmarkClick)
-        if (currentIsBookmarked) {
-            removeBookmark(stationName, lineNumber);
+        const exists = bookmarks.some(
+            item => item.stationName === stationName && item.lineNumber === lineNumber
+        );
+
+        if (exists) {
+            const updated = bookmarks.filter(
+                item => !(item.stationName === stationName && item.lineNumber === lineNumber)
+            );
+            localStorage.setItem(key, JSON.stringify(updated));
+            setIsBookmarked(false);
         } else {
-            addBookmark(stationName, lineNumber);
+            const updated = [...bookmarks, { stationName, lineNumber }];
+            localStorage.setItem(key, JSON.stringify(updated));
+            setIsBookmarked(true);
         }
         // setIsBookmarked는 useBookmarks 훅 내부에서 관리되므로 여기서 필요 없습니다.
     };
 
     // ⚠️ 뒤로가기 버튼 클릭 핸들러 (원래 로직 유지)
-    const handleBackClick = () => {
+    const handleBackClick = () => { 
         navigate('/');
     };
 
@@ -60,14 +70,13 @@ function Result() {
         }
     }, [stationName, lineNumber]);
 
-    // ⚠️ 이 useEffect는 이제 useBookmarks 훅이 담당하므로 제거됩니다.
-    // useEffect(() => {
-    //     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    //     const exists = bookmarks.some(
-    //         item => item.stationName === stationName && item.lineNumber === lineNumber
-    //     );
-    //     setIsBookmarked(exists);
-    // }, [stationName, lineNumber]);
+    useEffect(() => {
+        const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        const exists = bookmarks.some(
+            item => item.stationName === stationName && item.lineNumber === lineNumber
+        );
+        setIsBookmarked(exists);
+    }, [stationName, lineNumber]);
 
     return (
         <div className="flex flex-col items-center flex-grow py-8"> {/* y축 패딩 추가 */}
