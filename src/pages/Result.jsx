@@ -33,11 +33,11 @@ function Result() {
                 item => !(item.stationName === stationName && item.lineNumber === lineNumber)
             );
             localStorage.setItem(key, JSON.stringify(updated));
-            setIsBookmarked(false);
+            setIsBookmarked(false); // 여기서 바로 상태 업데이트
         } else {
             const updated = [...bookmarks, { stationName, lineNumber }];
             localStorage.setItem(key, JSON.stringify(updated));
-            setIsBookmarked(true);
+            setIsBookmarked(true); // 여기서 바로 상태 업데이트
         }
     };
 
@@ -64,6 +64,7 @@ function Result() {
         }
     }, [stationName, lineNumber]);
 
+    // 이 useEffect는 초기 로드 시에만 즐겨찾기 상태를 설정하도록 유지
     useEffect(() => {
         const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
         const exists = bookmarks.some(
