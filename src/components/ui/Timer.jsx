@@ -35,14 +35,18 @@ function Timer({ loading, error, subwayArrival }) {
         const isLastTrain = train.lstcarAt === "1";
 
         return (
-            <div key={index} className="flex items-center space-x-2 text-sm pl-24 pb-2">
-                <p>{formatTime(arrivalTime)}</p>
-                <p className="text-red-500">
+            // ⭐ 부모 div에 flex-nowrap과 min-w-0을 추가하여 줄바꿈을 방지하고 내부 요소가 줄어들도록 합니다.
+            <div key={index} className="flex items-center space-x-2 text-sm pl-12 pb-2 flex-nowrap min-w-0">
+                <p className="flex-shrink-0">{formatTime(arrivalTime)}</p> {/* ⭐ 시간을 고정 너비로 */}
+                <p className="text-red-500 flex-shrink-0"> {/* ⭐ 분을 고정 너비로 */}
                     {arrivalInSeconds
                         ? `${Math.floor(arrivalInSeconds / 60)}분`
                         : '정보 없음'}
                 </p>
-                <p className="text-gray-500">{train.trainLineNm} {isLastTrain && <span className="text-red-600 font-semibold">[막차]</span>}</p>
+                {/* ⭐ trainLineNm이 표시되는 <p> 태그에 텍스트 말줄임표 스타일을 추가합니다. */}
+                <p className="text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis flex-grow">
+                    {train.trainLineNm} {isLastTrain && <span className="text-red-600 font-semibold">[막차]</span>}
+                </p>
             </div>
         );
     };
@@ -52,13 +56,13 @@ function Timer({ loading, error, subwayArrival }) {
             {/* 왼쪽: 상행/내선 */}
             <div className="flex-1">
                 <h2 className="text-center font-bold mb-2">상행 / 내선</h2>
-                {inbound.map(renderTrainInfo)}
+                {inbound.length > 0 ? inbound.map(renderTrainInfo) : <p className="text-center text-gray-500">도착 정보 없음</p>}
             </div>
 
             {/* 오른쪽: 하행/외선 */}
             <div className="flex-1">
                 <h2 className="text-center font-bold mb-2">하행 / 외선</h2>
-                {outbound.map(renderTrainInfo)}
+                {outbound.length > 0 ? outbound.map(renderTrainInfo) : <p className="text-center text-gray-500">도착 정보 없음</p>}
             </div>
         </div>
     );
