@@ -35,7 +35,7 @@ function Timer({ loading, error, subwayArrival }) {
         const isLastTrain = train.lstcarAt === "1";
 
         return (
-            <div key={index} className="flex items-center space-x-2 text-sm pl-12 pb-2">
+            <div key={index} className="flex items-center space-x-2 text-sm pl-24 pb-2">
                 <p>{formatTime(arrivalTime)}</p>
                 <p className="text-red-500">
                     {arrivalInSeconds

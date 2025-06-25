@@ -1,14 +1,7 @@
-// api/subway-arrival.js
-// Vercel에서 이 파일을 Node.js 서버리스 함수로 배포합니다.
-
-// node-fetch는 Vercel 런타임에 내장되어 있을 가능성이 높지만,
-// 로컬 개발 환경에서 테스트 시 필요할 수 있습니다.
-// 만약 'fetch is not defined' 에러가 발생하면 `npm install node-fetch` 후 아래 import 주석을 해제하세요.
-// import fetch from 'node-fetch';
+// Vercel에서 이 파일을 Node.js 서버리스 함수로 배포
 
 export default async function (req, res) {
     // 1. Vercel 환경 변수에서 API 키를 가져옵니다.
-    // 이 AUTH_KEY는 Vercel 대시보드에서 설정해야 합니다.
     const AUTH_KEY = process.env.SEOUL_SUBWAY_AUTH_KEY; 
   
     // 2. 클라이언트에서 전달받은 역 이름을 쿼리 파라미터에서 가져옵니다.

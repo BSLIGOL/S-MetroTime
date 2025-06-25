@@ -1,48 +1,28 @@
-// Body.jsx
-import React, { useState, useEffect } from 'react'; // useState, useEffect 추가
+import React from 'react'; // useState, useEffect 제거
 import Item from '../components/ui/Item';
 import './BookMarkBody.css';
+import useBookmarks from '../hooks/useBookmarks'; // useBookmarks 훅 임포트
 
-const Body = ({ isBookmarkPage }) => {
-  // data를 상태로 관리
-  const [data, setData] = useState([]);
+const Body = () => { // isBookmarkPage prop 제거
+  // useBookmarks 훅을 사용하여 북마크 목록과 삭제 함수를 가져옵니다.
+  const { bookmarks, removeBookmark } = useBookmarks();
 
-  // isBookmarkPage가 true일 때 localStorage에서 북마크를 불러오는 효과
-  useEffect(() => {
-    if (isBookmarkPage) {
-      const stored = localStorage.getItem('bookmarks');
-      setData(stored ? JSON.parse(stored) : []);
-    } else {
-      // 전체역 데이터 혹은 기본값 (여기서는 빈 배열)
-      setData([]); // 이건 나중에 context로 바꿀 수도 있음
-    }
-  }, [isBookmarkPage]); // isBookmarkPage가 변경될 때마다 실행
-
+  // handleDelete 함수는 이제 useBookmarks에서 제공하는 removeBookmark를 직접 사용합니다.
   const handleDelete = (stationName, lineNumber) => {
-    const key = 'bookmarks';
-    const bookmarks = JSON.parse(localStorage.getItem(key)) || [];
-    const updated = bookmarks.filter(
-      item => !(item.stationName === stationName && item.lineNumber === lineNumber)
-    );
-
-    // 1. localStorage 업데이트
-    localStorage.setItem(key, JSON.stringify(updated));
-
-    // 2. 컴포넌트의 상태(data)도 업데이트하여 리렌더링 트리거
-    setData(updated);
+    removeBookmark(stationName, lineNumber);
   };
 
   return (
     <div className="Body">
-      {data.length === 0 ? (
-        <p className="no-result">표시할 역이 없습니다.</p>
+      {bookmarks.length === 0 ? ( // data 대신 bookmarks 사용
+        <p className="no-result">즐겨찾기 목록이 비어있습니다.</p>
       ) : (
-        data.map((item, index) => (
+        bookmarks.map((bookmark, index) => ( // data 대신 bookmarks 사용
           <Item
-            key={index}
-            stationName={item.stationName}
-            lineNumber={item.lineNumber}
-            handleDelete={handleDelete}
+            key={`${bookmark.stationName}-${bookmark.lineNumber}`} // 고유한 key 사용
+            stationName={bookmark.stationName}
+            lineNumber={bookmark.lineNumber}
+            handleDelete={handleDelete} // handleDelete 함수 전달
           />
         ))
       )}

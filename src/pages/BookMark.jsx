@@ -9,7 +9,7 @@ function BookMark() {
     return (
         <div>
             <span className="flex flex-col items-center flex-grow"><Search/></span>
-            <Body isBookmarkPage={true}/>
+            <Body /> {/* isBookmarkPage={true} 제거 */}
             <Back/>
         </div>
     )
